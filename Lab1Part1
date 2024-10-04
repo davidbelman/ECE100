@@ -1,3 +1,4 @@
+c.) Calculate and plot the magnitude and phase of H(jw) in standard form for w_o = 1, and Zeta = [0.1 0.3 0.707 1.0 3.0 10.0]
 
 zeta = [0.1 0.3 0.707 1.0 3.0 10.0];
 W0 = 1;
@@ -18,7 +19,7 @@ h_db = 20 * log10(h2);  % Compute dB magnitude outside the loop for all zeta val
 % Ensure no variables override function names
 clear xlabel ylabel title legend;
 
-% Plotting
+% Plotting magnitude
 figure; % Create a new figure window
 for k = 1:length(zeta)
     semilogx(w, h_db(k, :)); % Use semilogx to plot magnitude in dB
@@ -33,3 +34,22 @@ grid on; % Turn on the grid for better visibility
 hold off; % Release the plot hold
 
 
+% Plotting phase
+ph = angle(h); 
+
+
+figure; % Create a new figure window
+for k = 1:length(zeta)
+    semilogx(w, ph(k, :)); % Use semilogx to plot magnitude in dB
+    hold on; % Hold on to plot all curves on the same graph
+end
+xlabel('Frequency (\omega/\omega_0)'); % Correct function call for x-label
+ylabel('|H(j\omega)| (dB)'); % Correct function call for y-label
+legend(arrayfun(@(z) sprintf('\\zeta = %.3f', z), zeta, 'UniformOutput', false), 'Location', 'best'); % Create a legend for all zeta values
+title('Phase Plot vs Frequency for Different Damping Ratios'); % Add a title
+grid on; % Turn on the grid for better visibility
+hold off; % Release the plot hold
+
+
+
+d.) [FILL IN LATER]
